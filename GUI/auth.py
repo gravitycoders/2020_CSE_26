@@ -4,13 +4,7 @@ from getpass import getpass
 import pydb
 
 firebaseConfig = {
-    'apiKey': "AIzaSyDuLwwFeZxXcu5BfpnghOPr5HKJviknaLY",
-    'authDomain': "face-recognition-2e311.firebaseapp.com",
-    'databaseURL': "https://face-recognition-2e311.firebaseio.com",
-    'projectId': "face-recognition-2e311",
-    'storageBucket': "face-recognition-2e311.appspot.com",
-    'messagingSenderId': "70652685249",
-    'appId': "1:70652685249:web:67e68fab6d406531739d40",
+    #authentication details
   }
 
 
