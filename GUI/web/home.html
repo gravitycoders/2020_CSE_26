@@ -13,10 +13,14 @@
 <body>
     <nav id="nav" class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand">Live Recognition Session!</a>
-        <button type="button" class="btn btn-dark ml-auto" data-toggle="modal" data-target="#adduser">
+        <button type="button" id="adduserbtn" class="btn btn-dark ml-auto" data-toggle="modal" data-target="#adduser">
             <img src="images/add-user.svg"></img>
              Add User
         </button>
+        <button type="button" id="disptodaylistbtn" onclick="list_click()" class="btn btn-dark ml-5" data-toggle="modal" data-target="#disptodaylist">
+          <img id='list-icon' src="images/list.png"></img>
+           Today Entry List
+      </button>
         <button type="button" class="btn btn-danger ml-5" id="logout">
           <img id='logout-icon' src="images/logout.svg"></img>
           Logout
@@ -79,10 +83,13 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Name:</label>
                   <input type="text" class="form-control" name="username" aria-describedby="emailHelp">
-                </div>
-                <div class="form-group">
+                <!-- /div>
+                <!div class="form-group" -->
                   <label for="exampleInputPassword1">Role</label>
                   <input type="text" class="form-control" name="userrole">
+                  <label for="exampleInputPassword1">Department</label>
+                  <select class="form-control" id="deptselect" name="userdept" aria-label="Default select example">
+                  </select>
                 </div>
               </form>
             </div>
@@ -93,7 +100,32 @@
           </div>
         </div>
       </div>
-
+    
+      <div class="modal fade" id="disptodaylist"  tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" >Today's Entries</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id='modal-body'>
+              <table class="table table-striped">
+                <thead>
+                  <tr class="bg-primary">
+                    <th class="headfont" scope="col">Employee ID</th>
+                    <th class="headfont" scope="col">Entry Time</th>
+                  </tr>
+                </thead>
+                <tbody id="list-wrapper-today">
+                
+              </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
