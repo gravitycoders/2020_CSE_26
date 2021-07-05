@@ -33,23 +33,33 @@ def update_user(ans):
     eel.updateuser(ans)
 
 @eel.expose
-def adduser(user,role):
+def adduser(user,role,dept):
     imgfile=None
     
     root = Tk()
-    root.filename =  filedialog.askopenfilename(initialdir = os.getcwd(),title = "Select file",filetypes = (("jpeg files","*.jpg"),("all files","*.*")))
+    root.filename =  filedialog.askopenfilename(initialdir = os.getcwd(),title = "Select file",filetypes = (("jpeg files","*.jpeg"),("jpeg files","*.jpg"),("all files","*.*")))
     imgfile=root.filename
     root.destroy()
     if imgfile!='':
         #create in DB
-        uid,name=pydb.add_employee(user,role)
-        print(uid,name)
-        jsdoc=encode.imagencode(name,imgfile)
+        uid=pydb.add_employee(user,role,dept)
+        print(uid)
+        jsdoc=encode.imagencode(uid,imgfile)
         res=pydb.add_face(uid,jsdoc)
         update_user(True)
     else:
         update_user(False)
-    
 
+@eel.expose
+def givedeptlist():
+    deptlist=pydb.retdeptlist()
+    #print(deptlist)
+    eel.dispdept(deptlist)   
+
+@eel.expose
+def givetodaylist():
+    todaylist=pydb.get_today_list_db()
+    #print(todaylist)
+    eel.today_list(todaylist)
 
 eel.start('login.html')#,mode='None')
