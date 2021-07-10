@@ -21,7 +21,7 @@ def init_db():
 
 def init_company(email):
     global company
-    global deptnames,depts,dept
+    global deptnames,depts,dept   
     deptnames=[]
     print(email)
     query = collectiondb.where('email', '==', email ).get()
@@ -40,7 +40,8 @@ def init_company(email):
     generateday()
 
 def generateday():
-    global attendance,today
+    global attendance,today,tlist
+    tlist={}
     attendance = company.collection('attendance')
     currdate=date.today()
     today=attendance.document(str(currdate))
@@ -103,7 +104,11 @@ def todaylist(currempid,currtime):
     print('updated attendance')
 
 def get_today_list_db():
-    tlist=today.get()
-    return tlist.to_dict()
+    global tlist
+    if not tlist:
+        print('getting todays list from db')
+        tlist=today.get()
+        tlist=tlist.to_dict()
+    return tlist
 
 print('success')
